@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccueilController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Accueil {{ controller_name }}! ✅</h1>
+    <form action="/saerch" method="post">
+    <!-- filtre search  -->
+    <select name="filtre" id="select-filtre">
+                <option value="dog">--Please choose an option--</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="hamster">Hamster</option>
+                <option value="parrot">Parrot</option>
+                <option value="spider">Spider</option>
+                <option value="goldfish">Goldfish</option>
+        </select>
+
+     <!-- input tag -->
+    <input id="searchbar" onkeyup="search_animal()" type="text"
+        name="search" placeholder="Search animals..">
+    <!-- btn submit -->
+    <div class="form-example">
+    <input type="submit" value="Subscribe!">
+  </div>
+    </form>
+      
+
+</div>
+{% endblock %}
