@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Exemplaire;
+use App\Entity\Bibliotheque;
 use App\Form\ExemplaireType;
 use App\Repository\ExemplaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,14 +11,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/exemplaire')]
+#[Route('/exemplaires')]
 class ExemplaireController extends AbstractController
 {
-    #[Route('/', name: 'app_exemplaire_index', methods: ['GET'])]
+    #[Route('/ouvrages/{id}', name: 'app_exemplaire_index', methods: ['GET'])]
     public function index(ExemplaireRepository $exemplaireRepository): Response
     {
+        $bibliotheque = new Bibliotheque();
+        $bibliotheque->setNom("bibli 1");
+        $bibliotheque->setNom("bibli 2");
+        $exemplaire = new Exemplaire();
+        $exemplaire->setBibliotheque($bibliotheque);
+        $exemplaires = [
+            $exemplaire, $exemplaire
+        ];
+        //$exemplaires = $exemplaireRepository->findAll();
         return $this->render('exemplaire/index.html.twig', [
-            'exemplaires' => $exemplaireRepository->findAll(),
+            'exemplaires' => $exemplaires
         ]);
     }
 
