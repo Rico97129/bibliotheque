@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche d'ouvrages{% endblock %}
+
+{% block body %}
+    <h1>Recherche d'ouvrages</h1>
+
+    {% if ouvrage is not empty %}
+        <p>{{ ouvrage|length }} résultat(s) pour votre recherche</p>
+
+        <ul>
+          {% for o in ouvrage %}
+    <p>{{ o[0].titre }} - {{ o['nb_occurrences'] }}</p>
+{% endfor %}
+
+        </ul>
+    {% else %}
+        <p>Aucun ouvrage trouvé pour votre recherche</p>
+    {% endif %}
+{% endblock %}

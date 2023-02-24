@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ouvrages de {{ auteur.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Ouvrages de {{ auteur.nom }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ouvrage in ouvrages %}
+            <tr>
+                <td>{{ ouvrage.id }}</td>
+                <td>{{ ouvrage.titre }}</td>
+                <td>
+                    <a href="{{ path('app_ouvrage_show', {'id': ouvrage.id}) }}">Voir</a>
+                    <a href="{{ path('app_ouvrage_edit', {'id': ouvrage.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun ouvrage trouvé pour cet auteur</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_auteur_index') }}">Retourner à la liste des auteurs</a>
+{% endblock %}
