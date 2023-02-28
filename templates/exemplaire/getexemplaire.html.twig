@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exemplaire index{% endblock %}
+
+{% block body %}
+    <h1>Exemplaires</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Bibliothèque</th>
+                <th>Ouvrage</th>
+                <th>Emprunteur</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for exemplaires in exemplaire %}
+            <tr>
+                <td>{{ exemplaires.bibliotheque.id }}</td>
+                <td>{{ exemplaires.ouvrage.id }}</td>
+                <td>{{ exemplaires.emprunteur.id }}</td>
+             </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+       
+        </tbody>
+    </table>
+{% endblock %}

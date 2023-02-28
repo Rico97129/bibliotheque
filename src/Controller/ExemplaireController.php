@@ -10,10 +10,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/exemplaires')]
 class ExemplaireController extends AbstractController
 {
+    #[Route('/', name: 'app_exemplaire_exem', methods: ['GET'])]
+    public function getexamplaire(Request $request, EntityManagerInterface $entityManager ): Response
+    {
+        $query =$entityManager->createQuery(
+            'SELECT e FROM App\Entity\Exemplaire e'
+        );
+        $getExemplaires = $query->getResult();
+        return $this->render('exemplaire/getexemplaire.html.twig', [
+            'exemplaire' => $getExemplaires,
+            //'test'=> var_dump($getExemplaires), 
+        ]);
+    }
+
     #[Route('/ouvrages/{id}', name: 'app_exemplaire_index', methods: ['GET'])]
     public function index(ExemplaireRepository $exemplaireRepository): Response
     {

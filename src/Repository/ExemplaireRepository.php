@@ -39,20 +39,20 @@ class ExemplaireRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Exemplaire[] Returns an array of Exemplaire objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Exemplaire[] Returns an array of Exemplaire objects
+     */
+        public function findByExamplaire($value): array
+    {
+       return $this->createQueryBuilder('e')
+            ->andWhere('e.Examplaires = :val')
+            ->setParameter('val', $value)
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+    }
 
 //    public function findOneBySomeField($value): ?Exemplaire
 //    {
